@@ -1,0 +1,30 @@
+.pokemon-detail-mmodal {
+	border: '1px solid grey';
+}
+
+.pokemon-details-box {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	width: 400px;
+
+	box-shadow: 0px 11px 15px -7px;
+	padding: 32px;
+	background-color: white;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.pokemon-details-box:focus {
+	outline: none;
+}
+
+.pokemon-detail-text {
+	margin-bottom: 12px;
+	color: #5a5959;
+	text-align: center;
+}
+.pokemon-detail-text .types {
+	margin-right: 8px;
+}

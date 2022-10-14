@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Acme&family=Bebas+Neue&family=Roboto:wght@500&display=swap');
+
+.pokemons-header-box {
+	width: 100%;
+	background-color: #b71317;
+	padding: 12px;
+	text-align: center;
+}
+.pokemons-header-box h5 {
+	font-family: 'Acme', sans-serif;
+	color: white;
+}

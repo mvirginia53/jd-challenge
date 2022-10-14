@@ -1,0 +1,12 @@
+.pokemon-card-box {
+	cursor: pointer;
+}
+
+.pokemon-card-chip {
+	padding: 0 24px !important;
+	margin-bottom: 12px;
+}
+
+.pokemon-card-content {
+	padding-top: 0 !important;
+}
