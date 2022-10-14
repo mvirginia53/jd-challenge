@@ -1,4 +1,4 @@
-export const getTypeIcon = (type: string | undefined) => {
+export const getTypeIcon = (type: string | undefined): string => {
 	switch (type) {
 		case 'bug':
 			return 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/3c/Pok%C3%A9mon_Bug_Type_Icon.svg/180px-Pok%C3%A9mon_Bug_Type_Icon.svg.png';

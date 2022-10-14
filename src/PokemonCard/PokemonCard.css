@@ -10,3 +10,11 @@
 .pokemon-card-content {
 	padding-top: 0 !important;
 }
+
+.pokemon-card {
+	width: 150px;
+	min-height: 295px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}

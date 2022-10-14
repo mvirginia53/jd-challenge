@@ -14,7 +14,7 @@ interface PokemonCardProps {
 const PokemonCard: FunctionComponent<PokemonCardProps> = ({ pokemon }) => {
 	const { setIsModalOpen, setCurrentPokemon } = useContext(Context);
 
-	const handlePokemon = () => {
+	const handlePokemon = (): void => {
 		if (pokemon) {
 			setCurrentPokemon(pokemon);
 			setIsModalOpen(true);
@@ -26,7 +26,7 @@ const PokemonCard: FunctionComponent<PokemonCardProps> = ({ pokemon }) => {
 			className='pokemon-card-box'
 			sx={{ p: 1, m: 1, borderRadius: 2 }}
 			onClick={handlePokemon}>
-			<Card sx={{ width: 150 }}>
+			<Card className='pokemon-card'>
 				<CardMedia
 					component='img'
 					height='95'

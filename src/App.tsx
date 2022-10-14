@@ -8,33 +8,39 @@ import { Pokemon } from './types';
 import Context from './Context/Context';
 
 import './App.css';
+import AppPagination from './AppPagination';
 
 export const App: FunctionComponent = () => {
 	const [isModalOpen, setIsModalOpen] = useState(false);
 	const [currentPokemon, setCurrentPokemon] = useState();
 	const [pokemonsList, setPokemonsList] = useState<(Pokemon | undefined)[]>();
-	useEffect(() => {
-		const fetchPokemons = async () => {
-			try {
-				const data = await getPokemons();
-				if (data?.results) {
-					const basicPokemonsData = data.results;
-					const pokemonsDetailsPromise = basicPokemonsData.map(
-						async (pokemon, index: number) => {
-							const pokemonId = index + 1;
-							return await getPokemonData(pokemonId);
-						},
-					);
-					const pokemonsDetails = await Promise.all(pokemonsDetailsPromise);
-					setPokemonsList(pokemonsDetails as Pokemon[]);
-				}
-			} catch (error) {
-				console.error(error);
-			}
-		};
+	const [currentPage, setCurrentPage] = useState(1);
+	const [total, setTotal] = useState<Number>();
+	const fetchPokemons = async () => {
+		try {
+			const data = await getPokemons(24 * (currentPage - 1), 24);
+			if (data?.count) setTotal(Math.ceil(data.count / 24));
+			if (data?.results) {
+				const basicPokemonsData = data.results;
 
+				const pokemonsDetailsPromise = basicPokemonsData.map(
+					async (pokemon) => await getPokemonData(pokemon.url),
+				);
+				const pokemonsDetails = await Promise.all(pokemonsDetailsPromise);
+				setPokemonsList(pokemonsDetails as Pokemon[]);
+			}
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	useEffect(() => {
 		fetchPokemons();
 	}, []);
+
+	useEffect(() => {
+		fetchPokemons();
+	}, [currentPage]);
 
 	if (!pokemonsList) return <></>;
 
@@ -51,6 +57,7 @@ export const App: FunctionComponent = () => {
 					</Box>
 				</Container>
 			</Box>
+			<AppPagination currentPage={currentPage} total={total} setCurrentPage={setCurrentPage} />
 			<PokemonDetails currentPokemon={currentPokemon} />
 		</Context.Provider>
 	);
